@@ -17,27 +17,27 @@ public:
     }
     void helper(vector<string> &cur, int row,vector<vector<string> > &res)
     {
-        if(row == cur.size())//N¸ö»ÊºóÒÑ¾­°ÚºÃ
+        if(row == cur.size())//Nä¸ªçš‡åå·²ç»æ‘†å¥½
         {
-            res.push_back(cur);//·µ»ØÒ»¸ö½â
+            res.push_back(cur);//è¿”å›ä¸€ä¸ªè§£
             return;
         }
-        for(int col = 0; col < cur.size(); col++)//Öğ´Î³¢ÊÔµÚk¸ö»ÊºóµÄÎ»ÖÃ
-            if(isValid(cur, row, col)){//Î»ÖÃºÏ·¨¾Í½øĞĞÏÂÒ»²ã·ÅÖÃ
+        for(int col = 0; col < cur.size(); col++)//é€æ¬¡å°è¯•ç¬¬kä¸ªçš‡åçš„ä½ç½®
+            if(isValid(cur, row, col)){//ä½ç½®åˆæ³•å°±è¿›è¡Œä¸‹ä¸€å±‚æ”¾ç½®
                 cur[row][col] = 'Q';
                 helper(cur, row+1,res);
-                cur[row][col] = '.';//µİ¹éµÄ¾«Ëè£¬½øÈëÏÂÒ»²ãµİ¹éÇ°µÄ±ä¶¯Òª·µ»ØÔ­×´
+                cur[row][col] = '.';//é€’å½’çš„ç²¾é«“ï¼Œè¿›å…¥ä¸‹ä¸€å±‚é€’å½’å‰çš„å˜åŠ¨è¦è¿”å›åŸçŠ¶
             }
     }
     bool isValid(vector<string> &cur, int row, int col)
     {
-        //ÅÅ³ıÁĞÖØ¸´
+        //æ’é™¤åˆ—é‡å¤
         for(int i = 0; i < row; i++)
             if(cur[i][col] == 'Q')return false;
-        //ÓÒ¶Ô½ÇÏß(Ö»ĞèÒªÅĞ¶Ï¶Ô½ÇÏßÉÏ°ë²¿·Ö£¬ÒòÎªºóÃæµÄĞĞ»¹Ã»ÓĞ¿ªÊ¼·ÅÖÃ)ÍùÓÒÉÏ
+        //å³å¯¹è§’çº¿(åªéœ€è¦åˆ¤æ–­å¯¹è§’çº¿ä¸ŠåŠéƒ¨åˆ†ï¼Œå› ä¸ºåé¢çš„è¡Œè¿˜æ²¡æœ‰å¼€å§‹æ”¾ç½®)å¾€å³ä¸Š
         for(int i = row-1, j=col-1; i >= 0 && j >= 0; i--,j--)
             if(cur[i][j] == 'Q')return false;
-        //×ó¶Ô½ÇÏß(Ö»ĞèÒªÅĞ¶Ï¶Ô½ÇÏßÉÏ°ë²¿·Ö£¬ÒòÎªºóÃæµÄĞĞ»¹Ã»ÓĞ¿ªÊ¼·ÅÖÃ)Íù×óÉÏ
+        //å·¦å¯¹è§’çº¿(åªéœ€è¦åˆ¤æ–­å¯¹è§’çº¿ä¸ŠåŠéƒ¨åˆ†ï¼Œå› ä¸ºåé¢çš„è¡Œè¿˜æ²¡æœ‰å¼€å§‹æ”¾ç½®)å¾€å·¦ä¸Š
         for(int i = row-1, j=col+1; i >= 0 && j < cur.size(); i--,j++)
             if(cur[i][j] == 'Q')return false;
         return true;
