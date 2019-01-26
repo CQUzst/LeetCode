@@ -1,30 +1,3 @@
-//给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序
-class Solution {
-public:
-    void moveZeroes(vector<int>& nums) 
-    {
-        // //快慢指针
-        // int pos=0;
-        // for(size_t i=0;i<nums.size();i++)
-        //     if(nums[i]!=0){
-        //         nums[pos]=nums[i];
-        //         pos++;
-        //     }
-        // while(pos<nums.size()) {
-        //     nums[pos]=0;
-        //     ++pos;
-        // }
-        
-        //遍历i，非零就把它往前面的零交换，原地交换 i++，j++
-        //nums[j]会一直加，直到出现零就不加了
-        for(int i=0,j=0;i<nums.size();i++){
-           if(nums[i]){
-               swap(nums[i],nums[j++]);
-           }
-       }
-    }
-};
-
 
 //给定一个数组 nums 和一个值 val，你需要原地移除所有数值等于 val 的元素，返回移除后数组的新长度
 class Solution {
