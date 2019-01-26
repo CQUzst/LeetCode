@@ -19,7 +19,7 @@ public:
         
         int res = 0, n = heights.size();
         for (int i = 0; i < n; ++i) {
-            if (i + 1 < n && heights[i] <= heights[i + 1])//比左边小的都跳过,维持一个升序
+            if (i + 1 < n && heights[i] <= heights[i + 1])//比左边大的都跳过，升序跳过，降序开始计算面积
                 continue;
             int minH = heights[i];
             for (int j = i; j >= 0; --j) //从当前位置往前，找到一个最小高度，将之间的距离乘以最小高度就是当前举行面积
