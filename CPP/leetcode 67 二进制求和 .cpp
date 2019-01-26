@@ -72,19 +72,53 @@ public:
 //         }
 //         return c;
             
-            
-        string result;
-        int i = a.length() - 1;
-        int j = b.length() - 1;
-        int carry = 0;
-        while(i >= 0 || j >= 0 || carry > 0)//从后往前加，i<0时候valueA就为0
-        {
-            int valueA = i < 0 ? 0 : a[i--] - '0';
-            int valueB = j < 0 ? 0 : b[j--] - '0';
-            int sum = valueA + valueB + carry;
-            result.insert(result.begin(), (sum % 2) + '0');//往头部插入sum和
-            carry = sum / 2;//进位
+        //别人的
+        // string result;
+        // int i = a.length() - 1;
+        // int j = b.length() - 1;
+        // int carry = 0;
+        // while(i >= 0 || j >= 0 || carry > 0)//从后往前加，i<0时候valueA就为0
+        // {
+        //     int valueA = i < 0 ? 0 : a[i--] - '0';
+        //     int valueB = j < 0 ? 0 : b[j--] - '0';
+        //     int sum = valueA + valueB + carry;
+        //     result.insert(result.begin(), (sum % 2) + '0');//往头部插入sum和
+        //     carry = sum / 2;//进位
+        // }
+        // return result;
+        
+        int plus=0;
+        reverse(a.begin(),a.end());
+        reverse(b.begin(),b.end());
+        int len=max(a.size(),b.size());
+        string c(len,'0');
+        for(int i=0;i<len;i++){
+            if(a.size()<len)a+='0';
+            if(b.size()<len)b+='0';
         }
-        return result;
+        for(int i=0;i<len;i++){
+            if(a[i]=='1'&&b[i]=='1'){
+                if(plus)c[i]='1';
+                else c[i]='0';
+                plus=1;
+            }
+            if((a[i]=='0'&&b[i]=='1')||(a[i]=='1'&&b[i]=='0')){
+                if(plus){
+                    c[i]='0';
+                    plus=1;
+                }
+                else
+                    c[i]='1';
+            }
+            if(a[i]=='0'&&b[i]=='0'){
+                if(plus)c[i]='1';
+                else c[i]='0';
+                plus=0;
+            }
+        }
+        if(plus)
+            c+='1';
+        reverse(c.begin(),c.end());
+        return c;
     }
 };
