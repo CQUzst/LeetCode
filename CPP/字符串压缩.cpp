@@ -1,3 +1,4 @@
+//报数功能，将相邻重复字符串用数字放在前面表示重复n次，比如aaaa 输出4a
 #include <iostream>
 #include <string>
 using namespace std;
