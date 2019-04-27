@@ -9,7 +9,7 @@ int main()
 {
     int n,m;
     cin>>n>>m;
-    long long posNum=n/(m*2)*m;//posNum表示正数的个数
+    long long posNum=n/2;//posNum表示正数的个数
     long long sum=posNum*m;//每个正数比前面的负数多m
     cout<<sum<<endl;
     return 0;
