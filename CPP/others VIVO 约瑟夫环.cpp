@@ -17,8 +17,7 @@ struct Listnode
 Listnode* create(int size){//生成1-n的环形链表
     Listnode* head = new Listnode(1);
     Listnode* p = head;
-    for (int i = 0; i < size - 1; i++)
-    {
+    for (int i = 0; i < size - 1; i++){
         p->next = new Listnode(i + 2);
         p = p->next;
     }
@@ -26,8 +25,7 @@ Listnode* create(int size){//生成1-n的环形链表
     return head;
 }
 //递归 将上一次处理的结果当做下一次处理的输入,约瑟夫环
-Listnode* JosephRing(Listnode* begin, int m)
-{
+Listnode* JosephRing(Listnode* begin, int m){
     if (begin == begin->next){//最后一个值，自身成环，直接输出
         cout << begin->data << endl;
         return begin;
