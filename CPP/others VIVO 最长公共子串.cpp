@@ -16,7 +16,7 @@ int maxSubLength(string s1,string s2)
                 dp[i][j]=dp[i-1][j-1]+1;
                 if(maxLength<dp[i][j]){
                     maxLength=dp[i][j];
-                    start=i;a
+                    start=i;
                 }
             }
             else
