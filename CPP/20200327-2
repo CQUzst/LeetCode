@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <numeric>
+using namespace std;
+
+class Solution {
+public:
+    vector<string> luckString(string s) {
+        vector<int> fib = getFib(s.length());
+        string preStr;
+        vector<int> used(128, 0);
+        for (int i = 0; i < s.length(); i++) {
+            dfs(s, preStr, i, used, fib);
+        }
+        sort(res.begin(), res.end());
+        return res;
+    }
+
+    void dfs(const string &s, string preStr, int index, vector<int> used, const vector<int> &fib) {
+        if (index >= s.length()) {
+            return;
+        }
+        preStr += s[index];
+        if (used[s[index]] == 0) {
+            used[s[index]] = 1;
+        }
+        int sum = accumulate(used.begin(), used.end(), 0);
+        auto it = find(fib.begin(), fib.end(), sum);
+        if (it != fib.end()) {
+            auto iter = find(res.begin(), res.end(), preStr);
+            if (iter == res.end()) {
+                res.push_back(preStr);
+            }
+        }
+
+        dfs(s, preStr, index + 1, used, fib);
+    }
+
+    vector<int> getFib(int len) {
+        vector<int> res;
+        int sum = 0;
+        int pre1 = 0;
+        int pre2 = 1;
+        res.push_back(1);
+        while (sum < len) {
+            sum = pre1 + pre2;
+            pre1 = pre2;
+            pre2 = sum;
+            res.push_back(sum);
+        }
+        return res;
+    }
+
+private:
+    vector<string> res;
+};
+
+
+int main() {
+    vector<string> res;
+    Solution so;
+    string s("aabcddd");
+    res = so.luckString(s);
+    for (auto i : res) {
+        cout << i << ", ";
+    }
+    return 0;
+}
+
+//a, aa, aab, aabc, ab, abc, b, bc, bcd, bcdd, bcddd, c, cd, cdd, cddd, d, dd, ddd
+//a, aa, aab, aabc, ab, abc, b, bc, bcd, bcdd, bcddd, c, cd, cdd, cddd, d, dd, ddd
